@@ -78,7 +78,7 @@ def cropper(args):
     if args.c:
         print(halfcrop.cmd)
 
-    # halfcrop.run()
+    halfcrop.run()
     print(f"cropped {args.video} into {args.l} and {args.r}")
 
 if __name__ == '__main__':
