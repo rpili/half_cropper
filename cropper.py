@@ -2,24 +2,31 @@ import argparse
 import ffmpy
 import sys 
 import re
+
+
 '''
+# original testing code -- cropping random squares to validate
 ff = ffmpy.FFmpeg(
         inputs={'2020-07-28 11-18-38.mp4': None},
         outputs={'output_a.mp4': ['-filter:v', 'crop=100:100:500:500'],
                  'output_b.mp4': ['-filter:v', 'crop=100:100:300:300']}
         )
 
+# ff.cmd is a string containing the input to FFmpeg / aka tha FFmpeg command
 print(ff.cmd)
 
+# working halfcrop, input filename hard coded in
 halfcrop = ffmpy.FFmpeg(
         inputs={'2020-07-28 11-18-38.mp4': None},
         outputs={'half_left.mp4': ['-filter:v', 'crop=in_w/2:in_h:0:0'],
                  'half_right.mp4': ['-filter:v', 'crop=in_w/2:in_h:in_w/2:in_h']}
         )
 
+# printing and running 
 print(halfcrop.cmd)
 halfcrop.run()
 '''
+
 def main():
     # creating a parser object
     crop_parser = argparse.ArgumentParser(description="Crop a video into a left and a right half.")
