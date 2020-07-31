@@ -47,22 +47,38 @@ def main():
                              type=str,
                              default='right',
                              help='the output file name for the right crop')
+    crop_parser.add_argument('--c',
+                             metavar='command',
+                             type=str2bool,
+                             default=False,
+                             help='present the FFmpeg command')
 
+    # parse the user input arguments into the attributes of crop_parser parser object
+    # args is a Namespace object that holds these attributes and returns them
     args = crop_parser.parse_args()
+
+    # pass user arguments (file names) into cropper() to implement ffmpy
     cropper(args)
 
 def cropper(args):
+    # extract the input filetype and use it for the output files so they will all the the same filetype 
     findtype  = re.search(r"(\.[a-zA-Z\d]+)", args.video)
     filetype = findtype.group(1)
     left_filename = args.l + filetype
     right_filename = args.r + filetype
+
+    # crop the video into the left half and right half
+    # setup the FFmpeg inputs, outputs, and arguments
     halfcrop = ffmpy.FFmpeg(
             inputs={args.video : None},
             outputs={left_filename : ['-filter:v', 'crop=in_w/2:in_h:0:0'],
                     right_filename : ['-filter:v', 'crop=in_w/2:in_h:in_w/2:in_h']}
             )
-    print(halfcrop.cmd)
-    halfcrop.run()
+
+    if args.c:
+        print(halfcrop.cmd)
+
+    # halfcrop.run()
     print(f"cropped {args.video} into {args.l} and {args.r}")
 
 if __name__ == '__main__':
