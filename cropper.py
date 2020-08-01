@@ -27,6 +27,17 @@ print(halfcrop.cmd)
 halfcrop.run()
 '''
 
+def str2bool(v):
+    # allowing for boolean to be entered to print or not print the FFmpeg command in main
+    if isinstance(v, bool):
+       return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
 def main():
     # creating a parser object
     crop_parser = argparse.ArgumentParser(description="Crop a video into a left and a right half.")
