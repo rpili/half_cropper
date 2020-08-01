@@ -1,0 +1,18 @@
+half_left.mp4: penelope as NR, july 28 
+half_right.mp4: sai as LR, july 28
+
+outa.mp4: small crop, testing ffmpy 
+outb.mp4: small crop, testing ffmpy
+
+out.mp4: small crop, testing ffmpy
+
+output_a.mp4: small crop, testing ffmpy 
+output_b.mp4: small crop, testing ffmpy
+
+cli_right.mp4: penelope as NR, july 28 
+cli_left.mp4: sai as LR, july 28
+
+deleted all files except for half_left.mp4 and half_right.mp4
+renamed half_left.mp4 to st01.mp4
+renamed half_right.mp4 to st02.mp4 
+
