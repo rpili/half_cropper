@@ -52,17 +52,17 @@ def main():
                              metavar='left',
                              type=str,
                              default='left',
-                             help='the output file name for the left crop')
+                             help='the output file name for the left crop, with no extension. uses same filetype as input video.')
     crop_parser.add_argument('--r',
                              metavar='right',
                              type=str,
                              default='right',
-                             help='the output file name for the right crop')
+                             help='the output file name for the right crop, with no extension. uses same filetype as input video.')
     crop_parser.add_argument('--c',
                              metavar='command',
                              type=str2bool,
                              default=False,
-                             help='present the FFmpeg command')
+                             help='only present the FFmpeg command')
 
     # parse the user input arguments into the attributes of crop_parser parser object
     # args is a Namespace object that holds these attributes and returns them
@@ -88,9 +88,10 @@ def cropper(args):
 
     if args.c:
         print(halfcrop.cmd)
-
-    halfcrop.run()
-    print(f"cropped {args.video} into {args.l} and {args.r}")
+        print(f"will crop {args.video} into {args.l} and {args.r}")
+    else: 
+        halfcrop.run()
+        print(f"cropped {args.video} into {args.l} and {args.r}")
 
 if __name__ == '__main__':
     main()
